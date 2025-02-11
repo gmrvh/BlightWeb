@@ -1,12 +1,12 @@
 import React from 'react';
 import Sidebar from './Sidebar';
+import Navbar from './Navbar';
 import Dashboard from './Dashboard';
 
 const HomePage = () => {
   return (
     <div className="container mx-auto ">
       {/* Sidebar component */}
-      <Sidebar />
       <Dashboard/>
       
     </div>
