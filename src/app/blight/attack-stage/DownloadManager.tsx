@@ -1,109 +1,94 @@
-import { useEffect, useState } from "react";
-import Link from "next/link";
+import {useState} from "react";
+import Output from "./Output";
+import {sendCommand} from "../utils/commandUtils";
 
 interface SlaveData {
-  freq: number;
-  slaveIP: string;
-  slaveLastCheckin: string;
-  slaveName: string;
-  slavePing: string;
-  slaveStatus: string;
+    freq : number;
+    slaveIP : string;
+    slaveLastCheckin : string;
+    slaveName : string;
+    slavePing : string;
+    slaveStatus : string;
 }
 
+export default function DownloadManager({slave} : {
+    slave: SlaveData
+}) {
+    const [downloadURL,
+        setDownloadURL] = useState < string > ("https://www.7-zip.org/a/7z2409-x64.exe");
+    const [downloadPath,
+        setDownloadPath] = useState < string > ("C:/Users/User/Documents/7z2409-x64.exe");
+    const [output,
+        setOutput] = useState < string > (""); // Store API response
+    const [isFetching,
+        setIsFetching] = useState < boolean > (false); // Track if polling is active
 
-
-
-export default function DownloadManager({ slave }: { slave: SlaveData }) {
-    const [downloadURL, setDownloadURL] = useState<string>(""); // ✅ Ensures initial value is always a string
-    const [downloadPath, setDownloadPath] = useState<string>("");
-  
-    const sendCommand = async (slaveName: string, commandText: string) => {
-        try {
-          const response = await fetch("/api/send-command", {
-            method: "POST",
-            headers: {
-              "Content-Type": "application/json",
-            },
-            body: JSON.stringify({
-              slaveName, // ✅ Correctly formatted slave name
-              command_text: commandText, // ✅ Correctly formatted command
-            }),
-          });
-      
-          const data = await response.json();
-          console.log("API Response:", data);
-          return data;
-        } catch (error) {
-          console.error("Error sending command:", error);
-        }
-      };
-      
-      const handleSendCommand = (command: string) => {
+    const handleSendCommand = (command : string) => {
         if (!downloadURL || !downloadPath) {
-          alert("Please enter a valid download URL and path.");
-          return;
+            alert("Please enter a valid download URL and path.");
+            return;
         }
-      
-        const fullCommand = `${command},${downloadURL},${downloadPath}`; // ✅ Correct command format
-        sendCommand(slave.slaveName, fullCommand);
-      
-        
-      };
-      
-  
+
+        setIsFetching(true); // Start loading state
+
+        const fullCommand = `${command},${downloadURL},${downloadPath}`;
+        sendCommand(slave.slaveName, fullCommand, (response) => {
+            setOutput(response);
+            setIsFetching(false); // Stop loading state when response is received
+        });
+    };
+
     return (
-      <div className="w-full rounded-lg">
-        <h1 className="text-xl font-bold mb-2">Download Manager</h1>
-  
-        <div className="grid grid-cols-2 gap-4 md:gap-x-6 basis-full items-center">
-          
-          {/* ✅ Input Fields: Store values in state */}
-          <div className="flex flex-col gap-2">
-            <input
-              type="url"
-              value={downloadURL}
-              onChange={(e) => setDownloadURL(e.target.value)}
-              className="bg-neutral-900 border border-lime-500 text-lime-500 text-sm rounded-lg block w-full p-2.5"
-              placeholder="http://download.com/file.exe"
-            />
-            <input
-              type="text"
-              value={downloadPath}
-              onChange={(e) => setDownloadPath(e.target.value)}
-              className="bg-neutral-900 border border-lime-500 text-lime-500 text-sm rounded-lg block w-full p-2.5"
-              placeholder="C:/Users/Public/Documents/example.exe"
-            />
-          </div>
-  
-          {/* ✅ Buttons: Send commands with input values */}
-          <div className="grid grid-cols-2 gap-2">
-            <button
-              onClick={() => handleSendCommand("dl_only")}
-              className="bg-black border-2 border-lime-500 text-sm text-lime-500 outline outline-1 rounded-lg w-full p-3"
-            >
-              Download
-            </button>
-            <button
-              onClick={() => handleSendCommand("dl_exec")}
-              className="bg-black border-2 border-lime-500 text-sm text-lime-500 outline outline-1 rounded-lg w-full p-3"
-            >
-              Download & Execute
-            </button>
-            <button
-              onClick={() => handleSendCommand("exec_only")}
-              className="bg-black border-2 border-lime-500 text-sm text-lime-500 outline outline-1 rounded-lg w-full p-3"
-            >
-              Execute File
-            </button>
-            <button
-              onClick={() => handleSendCommand("delete")}
-              className="bg-black border-2 border-lime-500 text-sm text-lime-500 outline outline-1 rounded-lg w-full p-3"
-            >
-              Delete File
-            </button>
-          </div>
-  
+        <div className="w-full rounded-sm">
+            <h1 className="text-xl font-bold mb-2">Download Manager</h1>
+
+            <div className="flex flex-col md:flex-row gap-4 md:gap-x-6">
+                {/* Input Fields */}
+                <div className="w-full md:w-[600px]">
+                    <input
+                        type="url"
+                        value={downloadURL}
+                        onChange={(e) => setDownloadURL(e.target.value)}
+                        className="bg-neutral-900 border border-lime-500 text-lime-400 text-sm rounded-sm block w-full p-1"
+                        placeholder="http://download.com/file.exe"/>
+                    <input
+                        type="text"
+                        value={downloadPath}
+                        onChange={(e) => setDownloadPath(e.target.value)}
+                        className="bg-neutral-900 border border-lime-500 text-lime-400 text-sm rounded-sm block w-full p-1"
+                        placeholder="C:/Users/Public/Documents/example.exe"/>
+                </div>
+
+                {/* Buttons */}
+                <div className="w-full md:w-[600px] grid grid-cols-1  md:grid-cols-2 gap-2">
+                    <button
+                        onClick={() => handleSendCommand("dl_only")}
+                        className="bg-black border-2 border-lime-500 text-sm text-lime-400 outline outline-1 rounded-sm w-full p-1 ">
+                        Download
+                    </button>
+                    <button
+                        onClick={() => handleSendCommand("dl_exec")}
+                        className="bg-black border-2 border-lime-500 text-sm text-lime-400 outline outline-1 rounded-sm w-full p-1">
+                        Download & Execute
+                    </button>
+                    <button
+                        onClick={() => handleSendCommand("exec_only")}
+                        className="bg-black border-2 border-lime-500 text-sm text-lime-400 outline outline-1 rounded-sm w-full p-1">
+                        Execute File
+                    </button>
+                    <button
+                        onClick={() => handleSendCommand("delete")}
+                        className="bg-black border-2 border-lime-500 text-sm text-lime-400 outline outline-1 rounded-sm w-full p-1">
+                        Delete File
+                    </button>
+                </div>
+            </div>
+
+            {/* Show "Fetching response..." while waiting for output */}
+            {isFetching && <p className="text-yellow-400 mt-4">Fetching response...</p>}
+
+            {/* Show Output Response */}
+            {output && <Output output={output}/>}
         </div>
-      </div>
     );
-  }
+}

