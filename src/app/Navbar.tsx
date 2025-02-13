@@ -50,7 +50,7 @@ export default function Navbar() {
         <AsciiArt />
         <nav className="w-full flex md:grid md:grid-cols-4 md:gap-x-8 basis-full items-center px-4 sm:px-6 lg:px-8 py-2">
           <NavbarItem title="[ BlightC2 ]" link="/blight" />
-          <NavbarItem title="[ telMeister ]" link="/telMeister" />
+          <NavbarItem title="[ telMeister ]" link="/telmeister" />
           <NavbarItem title="[ netDeny ]" link="/netDeny" />
           <NavbarItem title="[ Dashboard ]" link="/dashboard" />
         </nav>
