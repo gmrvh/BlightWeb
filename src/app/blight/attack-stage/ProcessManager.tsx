@@ -80,13 +80,18 @@ export default function ProcessManager({ slave }: { slave: SlaveData }) {
       {isFetching && <p className="text-yellow-400">Fetching processes...</p>}
 
       {!isFetching && filteredProcesses.length > 0 && (
-      <input
-        type="text"
-        placeholder="Search process..."
-        value={searchQuery}
-        onChange={handleSearchChange}
-        className="w-full p-2 mb-2 rounded-lg border border-neutral-600 bg-neutral-800 text-white"
-      />
+        <div className="flex justify-between p-2 mb-2">
+          <input
+            type="text"
+            placeholder="Search process..."
+            value={searchQuery}
+            onChange={handleSearchChange}
+            className="w-full p-2 mb-2 rounded-lg border border-neutral-600 bg-neutral-800 text-white"
+          />
+            <button className="outline outline-1 text-lime-400 mt-0.5 bg-black rounded-lg max-h-10 ml-2" onClick={fetchProcesses}>
+            Refresh
+            </button>
+      </div>
       )}
 
       {/* Process List */}

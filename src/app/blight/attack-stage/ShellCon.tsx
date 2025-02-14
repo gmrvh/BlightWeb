@@ -29,8 +29,9 @@ export default function ShellCon({ slave }: { slave: SlaveData }) {
     return (
         <div className="container mx-auto">
         <h1 className="text-2xl font-bold">Shell</h1>
-        <div className="bg-neutral-900 p-2 rounded-lg">
-            <pre className="text-lime-500">{output}</pre>
+        <div className="bg-neutral-900 p-2 rounded-lg outline outline-1 h-96 overflow-y-auto">
+            { isFetching && <pre className="text-lime-500">Executing...</pre>} 
+            { !isFetching && <pre className="text-white">{output}</pre>}
         </div>
         <div className="mt-2">
             <input
@@ -43,7 +44,7 @@ export default function ShellCon({ slave }: { slave: SlaveData }) {
                     setInput("");
                 }
             }}
-            className="bg-neutral-800 p-2 rounded-lg"
+            className="bg-neutral-800 p-2 rounded-lg w-full"
             />
         </div>
         </div>
