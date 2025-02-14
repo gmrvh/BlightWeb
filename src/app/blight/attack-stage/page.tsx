@@ -5,6 +5,7 @@ import { useEffect, useState } from "react";
 import Link from "next/link";
 import DownloadManager from "./DownloadManager";
 import ProcessManager from "./ProcessManager";
+import ShellCon from "./ShellCon";
 
 interface SlaveData {
   freq: number;
@@ -48,6 +49,8 @@ export default function AttackStage() {
               <div>
                 {attack === "process_manager" ? (
                   <ProcessManager slave={slave} />
+                ) : attack === "shell" ? (
+                  <ShellCon slave={slave} />
                 ) : (
                   <DownloadManager slave={slave} />
                 )}
