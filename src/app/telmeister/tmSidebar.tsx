@@ -15,9 +15,9 @@ function SidebarItem({ title, link }: SidebarItemProps) {
 
   return (
     <Link href={link} className={`flex items-center p-1 rounded-lg ${
-          isActive ? "text-lime-500 font-bold" : "text-gray-800 dark:text-white hover:text-lime-300"
+          isActive ? "text-[#19FF00] font-bold" : "text-gray-800 dark:text-white hover:text-[#19FF00]"
         }`}>
-            <span className="block text-left w-full text-gray-800 dark:text-white hover:text-lime-300">
+            <span className="block text-left w-full text-gray-800 dark:text-white hover:text-[#19FF00]">
                 {title}
             </span>
             <span>>></span>

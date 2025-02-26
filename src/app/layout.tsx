@@ -9,6 +9,12 @@ const consolas = localFont({
   display: 'swap',
 });
 
+const BusMatrixCondensed = localFont({
+  src: './font/BusMatrixCondensed-Condensed.ttf', 
+  display: 'swap',
+});
+
+
 const geistSans = Geist({
   variable: "--font-geist-sans",
   subsets: ["latin"],
@@ -32,7 +38,7 @@ export default function RootLayout({
   return (
     <html lang="en">
       <body
-        className={`${consolas.className} `}
+        className={`${BusMatrixCondensed.className} `}
       >
         <Navbar />
         {children}

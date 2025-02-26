@@ -15,12 +15,13 @@ function SidebarItem({ title, link }: SidebarItemProps) {
 
   return (
     <Link href={link} className={`flex items-center p-1 rounded-lg ${
-          isActive ? "text-lime-500 font-bold" : "text-gray-800 dark:text-white hover:text-lime-300"
+          isActive ? "text-[#19FF00] font-bold" : "text-gray-800 dark:text-white hover:text-[#19FF00]"
         }`}>
-            <span className="block text-left w-full text-gray-800 dark:text-white hover:text-lime-300">
+          <span>[</span>
+            <span className="block text-left pl-4 w-full text-gray-800 dark:text-white hover:text-[#19FF00]">
                 {title}
             </span>
-            <span>>></span>
+            <span>]</span>
         </Link>
   );
 }
@@ -30,9 +31,9 @@ const Sidebar = () => {
   
 
   return (
-    <div className="sidebar">
-        <div className="px-3 py-4 overflow-y-auto bg-black-50 dark:bg-black-800 text-wrap border-r-2 border-gray-200 dark:border-gray-700">
-            <ul className="space-y-4">
+    <div className="w-full flex items-center">
+        <div className="px-4 py-4 overflow-y-auto bg-black-50 dark:bg-black-800 text-wrap border-r-2 border-gray-200 dark:border-gray-700">
+            <ul >
               <SidebarItem title="Slaves"  link="/blight"/>
               <SidebarItem title="PE Builder"  link="#"/>
               <SidebarItem title="Payload Config."  link="#"/>
