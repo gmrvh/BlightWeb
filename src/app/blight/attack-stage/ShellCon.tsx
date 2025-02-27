@@ -30,7 +30,7 @@ export default function ShellCon({ slave }: { slave: SlaveData }) {
         <div className="container mx-auto">
         <h1 className="text-2xl font-bold">Shell</h1>
         <div className="bg-neutral-900 p-2 rounded-lg outline outline-1 h-96 overflow-y-auto">
-            { isFetching && <pre className="text-lime-500">Executing...</pre>} 
+            { isFetching && <pre className="text-[#19FF00]">Executing...</pre>} 
             { !isFetching && <pre className="text-white">{output}</pre>}
         </div>
         <div className="mt-2">

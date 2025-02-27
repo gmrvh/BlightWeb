@@ -88,7 +88,7 @@ export default function ProcessManager({ slave }: { slave: SlaveData }) {
             onChange={handleSearchChange}
             className="w-full p-2 mb-2 rounded-lg border border-neutral-600 bg-neutral-800 text-white"
           />
-            <button className="outline outline-1 text-lime-400 mt-0.5 bg-black rounded-lg max-h-10 ml-2" onClick={fetchProcesses}>
+            <button className="outline outline-1 text-[#19FF00] mt-0.5 bg-black rounded-lg max-h-10 ml-2" onClick={fetchProcesses}>
             Refresh
             </button>
       </div>
@@ -144,7 +144,7 @@ export default function ProcessManager({ slave }: { slave: SlaveData }) {
       )}
 
       {/* Show API Response */}
-      {output && <p className="mt-4 p-2 bg-gray-800 rounded text-lime-400">{output}</p>}
+      {output && <p className="mt-4 p-2 bg-gray-800 rounded text-[#19FF00]">{output}</p>}
     </div>
   );
 }

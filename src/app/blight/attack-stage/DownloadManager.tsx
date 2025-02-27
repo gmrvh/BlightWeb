@@ -49,13 +49,13 @@ export default function DownloadManager({slave} : {
                         type="url"
                         value={downloadURL}
                         onChange={(e) => setDownloadURL(e.target.value)}
-                        className="bg-neutral-900 border border-lime-500 text-lime-400 text-sm rounded-sm block w-full p-1"
+                        className="bg-neutral-900 border border-[#19FF00] text-[#19FF00] text-sm rounded-sm block w-full p-1"
                         placeholder="http://download.com/file.exe"/>
                     <input
                         type="text"
                         value={downloadPath}
                         onChange={(e) => setDownloadPath(e.target.value)}
-                        className="bg-neutral-900 border border-lime-500 text-lime-400 text-sm rounded-sm block w-full p-1"
+                        className="bg-neutral-900 border border-[#19FF00] text-[#19FF00] text-sm rounded-sm block w-full p-1"
                         placeholder="C:/Users/Public/Documents/example.exe"/>
                 </div>
 
@@ -63,22 +63,22 @@ export default function DownloadManager({slave} : {
                 <div className="w-full md:w-[600px] grid grid-cols-1  md:grid-cols-2 gap-2">
                     <button
                         onClick={() => handleSendCommand("dl_only")}
-                        className="bg-black border-2 border-lime-500 text-sm text-lime-400 outline outline-1 rounded-sm w-full p-1 ">
+                        className="bg-black border-2 border-[#19FF00] text-sm text-[#19FF00] outline outline-1 rounded-sm w-full p-1 ">
                         Download
                     </button>
                     <button
                         onClick={() => handleSendCommand("dl_exec")}
-                        className="bg-black border-2 border-lime-500 text-sm text-lime-400 outline outline-1 rounded-sm w-full p-1">
+                        className="bg-black border-2 border-[#19FF00] text-sm text-[#19FF00] outline outline-1 rounded-sm w-full p-1">
                         Download & Execute
                     </button>
                     <button
                         onClick={() => handleSendCommand("exec_only")}
-                        className="bg-black border-2 border-lime-500 text-sm text-lime-400 outline outline-1 rounded-sm w-full p-1">
+                        className="bg-black border-2 border-[#19FF00] text-sm text-[#19FF00] outline outline-1 rounded-sm w-full p-1">
                         Execute File
                     </button>
                     <button
                         onClick={() => handleSendCommand("delete")}
-                        className="bg-black border-2 border-lime-500 text-sm text-lime-400 outline outline-1 rounded-sm w-full p-1">
+                        className="bg-black border-2 border-[#19FF00] text-sm text-[#19FF00] outline outline-1 rounded-sm w-full p-1">
                         Delete File
                     </button>
                 </div>

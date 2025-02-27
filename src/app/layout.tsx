@@ -40,7 +40,9 @@ export default function RootLayout({
       <body
         className={`${BusMatrixCondensed.className} `}
       >
+        <div className="py-4">
         <Navbar />
+        </div>
         {children}
       </body>
     </html>

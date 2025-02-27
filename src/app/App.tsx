@@ -5,7 +5,7 @@ import Dashboard from './Dashboard';
 
 const HomePage = () => {
   return (
-    <div className="container mx-auto ">
+    <div className="flex container mx-auto  ">
       {/* Sidebar component */}
       <Dashboard/>
       

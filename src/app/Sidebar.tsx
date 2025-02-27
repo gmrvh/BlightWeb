@@ -31,15 +31,15 @@ const Sidebar = () => {
   
 
   return (
-    <div className="w-full flex items-center">
-        <div className="px-4 py-4 overflow-y-auto bg-black-50 dark:bg-black-800 text-wrap border-r-2 border-gray-200 dark:border-gray-700">
-            <ul >
-              <SidebarItem title="Slaves"  link="/blight"/>
-              <SidebarItem title="PE Builder"  link="#"/>
-              <SidebarItem title="Payload Config."  link="#"/>
-              <SidebarItem title="Slave Config."  link="#"/>
-              <SidebarItem title="Server Config."  link="#"/>
-            </ul>
+    <div className="w-full flex items-center s">
+        <div className="h-screen w-[200px] overflow-y-auto bg-black-50 dark:bg-black-800 text-wrap ">
+          <ul>
+            <SidebarItem title="Slaves" link="/blight"/>
+            <SidebarItem title="PE Builder" link="#"/>
+            <SidebarItem title="Payload Config." link="#"/>
+            <SidebarItem title="Slave Config." link="#"/>
+            <SidebarItem title="Server Config." link="#"/>
+          </ul>
         </div>
     </div>
   );

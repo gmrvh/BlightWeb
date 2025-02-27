@@ -19,7 +19,7 @@ export function MachineTableItem({ slave }: { slave: SlaveData }) {
         <span>{slave.slavePing}</span>
         <span
             className={`font-semibold ${
-            slave.slaveStatus === "online" ? "text-green-500" : "text-red-500"
+            slave.slaveStatus === "online" ? "text-[#19FF00]" : "text-[#ff0000]"
             }`}
         >
             {slave.slaveStatus}
@@ -73,7 +73,7 @@ export function Machine({ slave }: { slave: SlaveData }) {
       <div className="cursor-pointer rounded-lg hover:bg-neutral-900 p-2 transition-all duration-300">
         <div className="flex items-center" onClick={() => setIsExpanded(!isExpanded)} >
           <img src="machine.svg" alt="Slave Image" className="w-8 h-8" />
-          <span className={`ml-3 flex-1 text-left ${slave.slaveStatus === "online" ? "text-green-500 font-semibold" : "text-red-500"}`}>
+          <span className={`ml-3 flex-1 text-left ${slave.slaveStatus === "online" ? "text-[#19FF00] font-semibold" : "text-[#ff0000]"}`}>
             {slave.slaveName}
           </span>
         </div>
@@ -130,7 +130,7 @@ export default function SlaveStatistics() {
   return (
     <div className="p-4 w-full">
   {error ? (
-    <p className="text-red-500">Error: {error}</p>
+    <p className="text-[#ff0000]">Error: {error}</p>
   ) : (
     <div className="w-full grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 xl:grid-cols-5 gap-8 py-2">
       {sortedSlaves.map((slave, index) => (
