@@ -8,13 +8,13 @@ export async function GET(req: Request) {
         return Response.json({ error: "Missing command_id" }, { status: 400 });
       }
   
-      const apiUrl = `http://80.78.26.129/v2/fetch-response?command_id=${command_id}`;
+      const apiUrl = `http://localhost/v2/fetch-response?command_id=${command_id}`;
   
       const response = await fetch(apiUrl, {
         method: "GET",
         headers: {
           "Content-Type": "application/json",
-          "Authorization": `Bearer MgsxOULRKBvhGxd9U2KbAqUVUKsp3ZoHaUQ1dDI6CvtVlvRFWqVFFjHvvY8IF6fG`,
+          "Authorization": `Bearer AUTHKEY`,
         },
       });
   
