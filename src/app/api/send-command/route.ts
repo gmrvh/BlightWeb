@@ -1,21 +1,20 @@
 export async function POST(req: Request) {
   try {
-    // ✅ Parse the incoming JSON request
     const { slaveName, command_text } = await req.json();
 
     if (!slaveName || !command_text) {
       return Response.json({ error: "Missing slaveName or command_text" }, { status: 400 });
     }
 
-    const apiUrl = "http://80.78.26.129/v2/send-command";
+    const apiUrl = "http://localhost/v2/send-command";
 
     const response = await fetch(apiUrl, {
       method: "POST",
       headers: {
         "Content-Type": "application/json",
-        "Authorization": `Bearer MgsxOULRKBvhGxd9U2KbAqUVUKsp3ZoHaUQ1dDI6CvtVlvRFWqVFFjHvvY8IF6fG`,
+        "Authorization": `Bearer AUTHKEY`,
       },
-      body: JSON.stringify({ slaveName, command_text }), // ✅ Ensure correct JSON format
+      body: JSON.stringify({ slaveName, command_text }),
     });
 
     if (!response.ok) {
