@@ -1,11 +1,11 @@
 export async function GET() {
-  const apiUrl = "http://80.78.26.129/v2/fetch-slaves";
+  const apiUrl = "http://localhost/v2/fetch-slaves";
 
   const response = await fetch(apiUrl, {
     method: "GET",
     headers: {
       "Content-Type": "application/json",
-      "Authorization": `Bearer MgsxOULRKBvhGxd9U2KbAqUVUKsp3ZoHaUQ1dDI6CvtVlvRFWqVFFjHvvY8IF6fG`, // Ensure "Bearer " is included
+      "Authorization": `Bearer AUTHKEY`, // Ensure "Bearer " is included
     },
   });
 
